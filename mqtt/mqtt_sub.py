@@ -1,4 +1,4 @@
-#!/home/urdbess/.conda/envs/mqtt/bin/python
+#!/usr/bin/python3
 
 import paho.mqtt.client as mqtt
 import threading
@@ -13,8 +13,8 @@ class Mqtt_Subscriber:
     """
 
     def __init__(self, central_ip='222.201.144.170', port=1884,
-                 topic_name='test2', callback_func=None,
-                 node_name='bci_', anonymous=True, timeout=60):
+                 topic_name='test', callback_func=None,
+                 node_name='r329', anonymous=True, timeout=60):
         """
             :param central_ip: Broker的地址
             :param port:  端口号
@@ -30,9 +30,9 @@ class Mqtt_Subscriber:
         self.broker_port = port
         self.timeout = timeout
         self.connected = False
-        self.node_name = node_name
+        self.node_name = node_name + str('_sub')
         if anonymous:
-            self.node_name = self.node_name + str(random.randint(100000, 999999))
+            self.node_name = self.node_name + str('_') + str(random.randint(10000, 99999))
         self.Start()
 
     def Start(self):
@@ -69,7 +69,7 @@ class Mqtt_Subscriber:
 
 
 if __name__ == '__main__':
-    p = Mqtt_Subscriber(topic_name='help')
+    p = Mqtt_Subscriber(node_name='room1', topic_name='room1')
     while not p.connected:
         pass
     while True:

@@ -12,21 +12,20 @@ class Mqtt_Publisher:
         mqtt消息通讯接口
     """
 
-    def __init__(self, central_ip='222.201.144.170', port=1884, node_name='bci_', anonymous=True, timeout=60):
+    def __init__(self, central_ip='222.201.144.170', port=1884, node_name='r329',anonymous='True', timeout=60):
         """
         :param central_ip: Broker的地址
         :param port:  端口号
         :param timeout:  连接延时
         :param node_name: 节点名称
-        :param anonymous: 是否同时允许多个节点
         """
         self.broker_ip = central_ip
         self.broker_port = port
         self.timeout = timeout
         self.connected = False
-        self.node_name = node_name
+        self.node_name = node_name + str('_pub')
         if anonymous:
-            self.node_name = self.node_name + str(random.randint(100000, 999999))
+            self.node_name = self.node_name + str('_') + str(random.randint(10000, 99999))
         self.Start()
 
     def Start(self):
@@ -69,10 +68,8 @@ class Mqtt_Publisher:
 
 
 if __name__ == '__main__':
-    p = Mqtt_Publisher()
+    p = Mqtt_Publisher(node_name = 'room1')
     while not p.connected:
         pass
-    while True:
-        p.Publish('help', 'i need help!')
-        p.Publish('test2', '这是测试2！')
-        time.sleep(1)
+    p.Publish('room1', 'JIU MING!')
+    time.sleep(0.5)
