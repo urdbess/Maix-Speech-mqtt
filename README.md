@@ -5,6 +5,8 @@ r329的语音识别模块会在识别到有人喊 “**救命**” 后发布警�
 ## 运行过程
 - 进入工程目录
   `cd Maix-Speech-mqtt`
+- 给文件添加执行权限
+  `chmod +x command.sh && chmod +x mqtt/mqtt_pub.py`
 - 启动语音识别模块
   `sudo ./maix_asr asr_wav.cfg`
 - 启动订阅端（可将Maix-Speech-mqtt/mqtt/mqtt_sub.py复制到其他远程设备运行，python中需要安装paho-mqtt包）
