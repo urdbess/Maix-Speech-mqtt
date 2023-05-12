@@ -68,8 +68,8 @@ class Mqtt_Publisher:
 
 
 if __name__ == '__main__':
-    p = Mqtt_Publisher(node_name = 'room1')
+    p = Mqtt_Publisher(node_name = 'ROOM1')
     while not p.connected:
         pass
-    p.Publish('room1', 'JIU MING!')
+    p.Publish('room1_sr', 'help')
     time.sleep(0.5)
